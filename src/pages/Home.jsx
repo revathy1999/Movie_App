@@ -51,11 +51,11 @@ import { useState } from "react";
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const[search,setSearch]=useState("")
-  let url = `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=cf18acdfa87cb0aa1e75a5959d43c26a`;
+  const [search, setSearch] = useState("");
+  let url = `https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=cf18acdfa87cb0aa1e75a5959d43c26a`;
   useEffect(() => {
-    if(search){
-      url=`https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/search/movie?query=${search}&api_key=cf18acdfa87cb0aa1e75a5959d43c26a`
+    if (search) {
+      url = `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=cf18acdfa87cb0aa1e75a5959d43c26a`;
     }
     fetch(url)
       .then((res) => res.json())
@@ -68,7 +68,9 @@ export default function Home() {
         type="text"
         placeholder="Search Movies here..."
         className="border border-gray-700 px-4 py-1 w-3/4 md:w-1/2 rounded bg-opacity-60 fixed top-16 left-1/2 transform -translate-x-1/2 bg-transparent z-10"
-      onChange={(e)=>{setSearch(e.target.value)}}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
       />
       <div className="movies-container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-16">
         {movies.map((movie) => {
